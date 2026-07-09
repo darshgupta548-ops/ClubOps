@@ -1,0 +1,25 @@
+info:
+  name: New Expense
+  type: http
+  seq: 18
+
+http:
+  method: POST
+  url: http://127.0.0.1:5000/api/expenses/
+  body:
+    type: json
+    data: |-
+      {
+          "budget_id": 1,
+          "item_name": "Projector Rental",
+          "category": "Equipment",
+          "quantity": 1,
+          "unit_price": 2500
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

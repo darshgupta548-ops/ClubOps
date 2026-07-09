@@ -41,6 +41,7 @@
 | Field | Type |
 |-------|------|
 | id | PK |
+| creator_id | FK |
 | title | TEXT |
 | description | TEXT |
 | objective | TEXT |
@@ -128,7 +129,7 @@ remaining_budget = allocated_budget - actual_expense
 |-------|------|
 | id | PK |
 | event_id | FK |
-| photo_path | TEXT (Optional) |
+| photo_path s| TEXT (Optional) |
 | report_path | TEXT (Optional) |
 | summary | TEXT |
 | skill_mapping | JSON |

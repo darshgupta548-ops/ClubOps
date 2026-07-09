@@ -1,0 +1,32 @@
+info:
+  name: New Automation
+  type: http
+  seq: 23
+
+http:
+  method: POST
+  url: http://127.0.0.1:5000/api/automations
+  body:
+    type: json
+    data: |-
+      {
+        "event_id": 1,
+        "photo_paths": "uploads/events/1/photos/",
+        "report_path": "reports/event_1.pdf",
+        "summary": "Event completed successfully.",
+        "skill_mapping": {
+          "teamwork": 3,
+          "communication": 2
+        },
+        "sdg_mapping": {
+          "4": "Quality Education",
+          "17": "Partnerships for the Goals"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

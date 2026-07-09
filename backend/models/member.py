@@ -14,7 +14,7 @@ class Member(db.Model):
 
     name = db.Column(db.String(100), nullable=False)
 
-    inst_email = db.Column(
+    institute_email = db.Column(
         db.String(100),
         unique=True,
         nullable=False

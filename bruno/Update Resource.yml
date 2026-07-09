@@ -1,16 +1,16 @@
 info:
-  name: Test
+  name: Update Resource
   type: http
-  seq: 7
+  seq: 22
 
 http:
-  method: POST
-  url: http://127.0.0.1:5000/api/clubs/
+  method: PUT
+  url: http://127.0.0.1:5000/api/resources/1
   body:
     type: json
     data: |-
       {
-          "description": "Astronomy Club"
+        "name" : "Dobsonian Telescope"
       }
   auth: inherit
 

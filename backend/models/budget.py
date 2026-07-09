@@ -25,6 +25,7 @@ class Budget(db.Model):
 
     buffer_percentage = db.Column(
         db.Float,
+        nullable=False,
         default=0
     )
 

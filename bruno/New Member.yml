@@ -1,0 +1,25 @@
+info:
+  name: New Member
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: http://127.0.0.1:5000/api/members
+  body:
+    type: json
+    data: |-
+      {
+        "club_id": 1,
+        "name": "Hanisha Makhija",
+        "institute_email": "darsh@example.com",
+        "password_hash": "some_hash_here",
+        "position": "Tech Head"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

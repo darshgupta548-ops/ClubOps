@@ -1,16 +1,16 @@
 info:
-  name: Test
+  name: Update Event
   type: http
-  seq: 7
+  seq: 12
 
 http:
-  method: POST
-  url: http://127.0.0.1:5000/api/clubs/
+  method: PUT
+  url: http://127.0.0.1:5000/api/events/1
   body:
     type: json
     data: |-
       {
-          "description": "Astronomy Club"
+          "venue":"OSAIL Ground"
       }
   auth: inherit
 

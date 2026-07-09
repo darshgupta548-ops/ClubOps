@@ -1,16 +1,16 @@
 info:
-  name: Test
+  name: Update Member
   type: http
-  seq: 7
+  seq: 8
 
 http:
-  method: POST
-  url: http://127.0.0.1:5000/api/clubs/
+  method: PUT
+  url: http://127.0.0.1:5000/api/members/1
   body:
     type: json
     data: |-
       {
-          "description": "Astronomy Club"
+          "position": "Treasurer"
       }
   auth: inherit
 

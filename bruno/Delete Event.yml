@@ -1,0 +1,15 @@
+info:
+  name: Delete Event
+  type: http
+  seq: 13
+
+http:
+  method: DELETE
+  url: http://127.0.0.1:5000/api/events/2
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,30 @@
+info:
+  name: New Event
+  type: http
+  seq: 12
+
+http:
+  method: POST
+  url: http://127.0.0.1:5000/api/events/
+  body:
+    type: json
+    data: |-
+      {
+        "creator_id": 1,
+        "title": "Astronomy Night",
+        "description": "A night sky observation event",
+        "objective": "Introduce students to stargazing",
+        "category": "Non-Tech",
+        "venue": "Football Ground",
+        "date": "2026-07-09",
+        "start_time": "18:30",
+        "end_time": "21:00",
+        "attendees": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
