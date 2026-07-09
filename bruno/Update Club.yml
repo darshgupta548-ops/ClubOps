@@ -1,0 +1,22 @@
+info:
+  name: Update Club
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://127.0.0.1:5000/api/clubs/1
+  body:
+    type: json
+    data: |-
+      {
+          "name": "Brahmand Astronomy Club",
+          "faculty_advisor": "Dr. ABC"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
