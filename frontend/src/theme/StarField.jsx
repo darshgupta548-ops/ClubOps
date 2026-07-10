@@ -290,7 +290,6 @@ export default function StarField() {
       }
     };
   }, [layers, prefersReducedMotion]);
-
   return (
     <div className="co-starfield" aria-hidden="true">
       <canvas ref={canvasRef} className="co-starfield__canvas" />
