@@ -1,170 +1,37 @@
 .co-landing {
   position: relative;
-  height: 100vh;
-  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
   background: var(--co-bg);
-  scroll-behavior: auto;
 }
 
-.co-landing__stage {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 12vh;
-  will-change: filter;
+.co-landing__workspace {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  filter: blur(24px) brightness(0.42) saturate(0.85);
+  transform: scale(1.02);
+  transform-origin: center top;
+  transition:
+    filter 1.6s var(--co-ease-out),
+    transform 1.6s var(--co-ease-out);
+}
+
+.co-landing__workspace.is-entered {
+  filter: blur(0) brightness(1) saturate(1);
+  transform: scale(1);
 }
 
 .co-landing__scrim {
-  position: absolute;
-  inset: 0;
-  background: var(--co-bg);
-  pointer-events: none;
-}
-
-.co-landing__wordmark {
   position: fixed;
-  top: 32px;
-  left: 40px;
-  z-index: 3;
-  font-family: var(--co-font-display);
-  font-size: 1.05rem;
-  color: var(--co-text-muted);
-  letter-spacing: 0.01em;
-}
-
-.co-landing__tagline {
-  margin: -8px 0 4px;
-  max-width: 32ch;
-  font-size: 0.95rem;
-  color: var(--co-text-muted);
-  line-height: 1.5;
-}
-
-.co-landing__hero {
-  position: fixed;
-  inset: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 22px;
-  padding: 0 24px;
-  will-change: transform, opacity;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--co-bg) 0%, rgba(11, 13, 18, 0.95) 50%, var(--co-bg) 100%);
+  opacity: 0.58;
+  transition: opacity 1.6s var(--co-ease-out);
 }
 
-.co-landing__eyebrow {
-  margin: 0;
-  font-family: var(--co-font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--co-text-muted);
-}
-
-.co-landing__name {
-  margin: 0;
-  font-family: var(--co-font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  color: var(--co-text);
-  max-width: 14ch;
-  line-height: 1.15;
-}
-
-/* Glassmorphism — frosted museum glass, restrained */
-.co-landing__actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 8px;
-  padding: 10px;
-  background: var(--co-glass-fill);
-  border: 1px solid var(--co-glass-border);
-  border-radius: 20px;
-  backdrop-filter: blur(var(--co-glass-blur));
-  -webkit-backdrop-filter: blur(var(--co-glass-blur));
-}
-
-/* Neumorphic controls — matte, tactile, restrained to interactive elements only */
-.co-landing__btn {
-  font-family: var(--co-font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 13px 30px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  color: var(--co-text);
-  background: var(--co-bg-elevated);
-  box-shadow: var(--co-shadow-out);
-  transition: transform 0.25s var(--co-ease), box-shadow 0.25s var(--co-ease);
-}
-
-.co-landing__btn:hover {
-  transform: translateY(-1px);
-}
-
-.co-landing__btn:active {
-  box-shadow: var(--co-shadow-in);
-  transform: translateY(0);
-}
-
-.co-landing__btn--primary {
-  color: var(--co-bg);
-  background: var(--co-accent);
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.co-landing__btn--ghost {
-  color: var(--co-text-muted);
-}
-
-.co-landing__continue {
-  font-family: var(--co-font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 13px 34px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  color: var(--co-bg);
-  background: var(--co-accent);
-  box-shadow: var(--co-shadow-out);
-  transition: transform 0.25s var(--co-ease);
-}
-
-.co-landing__continue:hover {
-  transform: translateY(-1px);
-}
-
-.co-landing__hint {
-  font-family: var(--co-font-mono);
-  font-size: 0.75rem;
-  color: var(--co-text-faint);
-  letter-spacing: 0.05em;
-  animation: co-hint-drift 2.4s ease-in-out infinite;
-}
-
-@keyframes co-hint-drift {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(4px);
-    opacity: 1;
-  }
-}
-
-.co-landing__spacer {
-  height: 160vh;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .co-landing__hint {
-    animation: none;
-  }
+.co-landing__scrim.is-entered {
+  opacity: 0;
 }

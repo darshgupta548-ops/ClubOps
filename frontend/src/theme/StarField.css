@@ -5,33 +5,9 @@
   pointer-events: none;
 }
 
-.co-starfield__lines {
+.co-starfield__canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.co-starfield__lines polyline {
-  stroke: rgba(232, 230, 223, 0.08);
-  stroke-width: 0.08;
-}
-
-.co-starfield__star {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--co-text);
-  opacity: 0.18;
-  animation-name: co-twinkle;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes co-twinkle {
-  0%, 100% {
-    opacity: 0.08;
-  }
-  50% {
-    opacity: 0.35;
-  }
 }

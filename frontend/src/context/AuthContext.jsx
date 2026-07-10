@@ -10,20 +10,34 @@ import { createContext, useContext, useState } from 'react';
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // null = guest
+  const [user, setUser] = useState(null);
 
-  const login = async (_credentials) => {
-    // TODO: POST to /api/auth/login once the backend route exists.
-    throw new Error('Auth is not implemented yet.');
+  const login = async ({ email }) => {
+    // TODO: Replace with POST /api/auth/login once Flask-Login is available.
+    const localPart = email.split('@')[0] || 'Space Builder';
+    setUser({ id: 'mock-user', name: toDisplayName(localPart), email });
+  };
+
+  const register = async ({ name, email }) => {
+    // TODO: Replace with the approved member-invite/onboarding workflow.
+    setUser({ id: 'mock-user', name: name || 'Space Builder', email });
   };
 
   const logout = () => setUser(null);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: Boolean(user), login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
+}
+
+function toDisplayName(value) {
+  return value
+    .split(/[._-]/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(' ');
 }
 
 export function useAuth() {

@@ -12,9 +12,11 @@
   --co-panel-border: rgba(255, 255, 255, 0.06);
 
   /* Glass (frosted museum glass, not neon) */
-  --co-glass-fill: rgba(255, 255, 255, 0.045);
-  --co-glass-border: rgba(255, 255, 255, 0.09);
-  --co-glass-blur: 20px;
+  --co-glass-fill: rgba(255, 255, 255, 0.038);
+  --co-glass-border: rgba(255, 255, 255, 0.07);
+  --co-glass-blur: 24px;
+  --co-glass-highlight: rgba(255, 255, 255, 0.04);
+  --co-glass-shadow: rgba(0, 0, 0, 0.15);
 
   /* Text */
   --co-text: #e8e6df;
@@ -25,9 +27,11 @@
   --co-accent: #c9a15f;
   --co-accent-dim: #8a744a;
 
-  /* Neumorphic control shadows (matte, not glossy) */
-  --co-shadow-out: 6px 6px 14px rgba(0, 0, 0, 0.45), -4px -4px 10px rgba(255, 255, 255, 0.02);
-  --co-shadow-in: inset 3px 3px 8px rgba(0, 0, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+  /* Premium layered shadows (matte, not glossy) */
+  --co-shadow-out: 0 2px 8px rgba(0, 0, 0, 0.32), 0 8px 24px rgba(0, 0, 0, 0.18), 0 16px 48px rgba(0, 0, 0, 0.12);
+  --co-shadow-in: inset 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  --co-shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.28), 0 12px 32px rgba(0, 0, 0, 0.16), 0 24px 64px rgba(0, 0, 0, 0.1);
+  --co-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.24), 0 4px 12px rgba(0, 0, 0, 0.14);
 
   /* Type */
   --co-font-display: 'Fraunces', Georgia, serif;
@@ -36,6 +40,8 @@
 
   /* Motion */
   --co-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --co-ease-out: cubic-bezier(0.25, 0.46, 0.32, 1);
+  --co-ease-in-out: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 * {
