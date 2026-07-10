@@ -1,5 +1,5 @@
 import { AuthProvider } from './context/AuthContext';
-import Landing from './pages/Landing/Landing';
+import LandingPage from './pages/Landing/LandingPage';
 import './theme/tokens.css';
 
 // Routing (react-router) lands in Roadmap #3 alongside AppLayout.
@@ -8,7 +8,7 @@ import './theme/tokens.css';
 function App() {
   return (
     <AuthProvider>
-      <Landing />
+      <LandingPage />
     </AuthProvider>
   );
 }
