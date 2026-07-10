@@ -1,0 +1,80 @@
+/* ClubOps Theme Tokens
+   Observatory-inspired tactile minimalism.
+   Astronomy is a subtle inspiration, never the subject. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Surfaces */
+  --co-bg: #0b0d12;
+  --co-bg-elevated: #12151d;
+  --co-panel: #14171f;
+  --co-panel-border: rgba(255, 255, 255, 0.06);
+
+  /* Glass (frosted museum glass, not neon) */
+  --co-glass-fill: rgba(255, 255, 255, 0.045);
+  --co-glass-border: rgba(255, 255, 255, 0.09);
+  --co-glass-blur: 20px;
+
+  /* Text */
+  --co-text: #e8e6df;
+  --co-text-muted: #8b8f9c;
+  --co-text-faint: #565b68;
+
+  /* Accent — dim brass, observatory dial. Used sparingly. */
+  --co-accent: #c9a15f;
+  --co-accent-dim: #8a744a;
+
+  /* Neumorphic control shadows (matte, not glossy) */
+  --co-shadow-out: 6px 6px 14px rgba(0, 0, 0, 0.45), -4px -4px 10px rgba(255, 255, 255, 0.02);
+  --co-shadow-in: inset 3px 3px 8px rgba(0, 0, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.02);
+
+  /* Type */
+  --co-font-display: 'Fraunces', Georgia, serif;
+  --co-font-body: 'Inter', -apple-system, sans-serif;
+  --co-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Motion */
+  --co-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--co-bg);
+  color: var(--co-text);
+  font-family: var(--co-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle paper grain — layered over dark surfaces, never over text-heavy areas at full strength */
+.co-grain {
+  position: relative;
+}
+
+.co-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
