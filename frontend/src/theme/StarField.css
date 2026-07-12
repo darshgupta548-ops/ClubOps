@@ -1,13 +1,66 @@
 .co-starfield {
-  position: absolute;
+  position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
 }
 
-.co-starfield__canvas {
+.co-starfield__lines {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.co-starfield__lines polyline {
+  stroke: rgba(220, 230, 240, 0.05);
+  stroke-width: 0.06;
+}
+
+.co-starfield__star {
+  position: absolute;
+  border-radius: 50%;
+  animation-name: co-drift;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+.co-starfield__star.can-twinkle {
+  animation-name: co-twinkle, co-drift;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out, linear;
+}
+
+.co-starfield__star.has-glow {
+  box-shadow: 0 0 2px 0.4px rgba(220, 235, 255, 0.25),
+              0 0 5px 0.8px rgba(220, 235, 255, 0.1);
+}
+
+@keyframes co-twinkle {
+  0%, 100% {
+    opacity: inherit;
+  }
+  50% {
+    opacity: calc(inherit * 1.35);
+  }
+}
+
+@keyframes co-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(calc(var(--drift-x) * (1 + var(--depth) * 0.5)), calc(var(--drift-y) * (1 + var(--depth) * 0.5)));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .co-starfield__star {
+    animation: none;
+  }
 }

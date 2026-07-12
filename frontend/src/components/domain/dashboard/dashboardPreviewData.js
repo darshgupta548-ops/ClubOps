@@ -1,26 +1,24 @@
 export const dashboardPreviewData = {
-  clubName: 'Astronomy Club',
-  greeting: 'What needs you right now',
-  tasks: [
-    { id: 'booking', label: 'Confirm observatory booking for Star Night', meta: 'Due 2:00 PM', priority: true },
-    { id: 'budget', label: 'Review budget request from Outreach team', meta: 'Due 4:30 PM' },
-    { id: 'rsvp', label: 'Send RSVP reminder to 42 members', meta: 'Due today' },
-    { id: 'volunteers', label: 'Approve volunteer shift schedule', meta: 'Done 11:10 AM', done: true },
-  ],
-  quickActions: ['New Event', 'Draft Report', 'Invite Member', 'Announcement'],
-  continueWorking: [
-    { title: 'Star Night 2026 — Run of Show', meta: 'Event plan · edited 12m ago' },
-    { title: 'Semester Impact Report', meta: 'Draft · edited 1h ago' },
-    { title: 'Telescope Workshop Budget', meta: 'Spreadsheet · edited yesterday' },
-  ],
-  upcomingEvents: [
-    { day: '14', month: 'Feb', title: 'Star Night 2026', time: '7:30 PM', venue: 'Rooftop Observatory', attendees: 128 },
-    { day: '21', month: 'Feb', title: 'Telescope Building Workshop', time: '4:00 PM', venue: 'Lab 204', attendees: 40 },
-    { day: '02', month: 'Mar', title: 'Guest Lecture — Deep Field Imaging', time: '6:00 PM', venue: 'Auditorium A', attendees: 210 },
-  ],
-  pendingReports: [
-    { title: 'Post-Event Report — Nebula Nights', meta: 'Overdue by 1 day', status: 'overdue' },
-    { title: 'Monthly Attendance Summary', meta: 'Due in 2 days', status: 'draft' },
-    { title: 'Grant Utilization Report', meta: 'Due in 5 days', status: 'draft' },
+  timelineEvent: {
+    title: 'Star Night 2026',
+    date: 'Friday, 14 February · 7:30 PM',
+    venue: 'Rooftop Observatory',
+    status: 'upcoming',
+    statusLabel: 'Upcoming',
+    steps: [
+      { label: 'Event plan', detail: 'Run of show is ready', state: 'complete' },
+      { label: 'Budget review', detail: 'Two items need approval', state: 'current' },
+      { label: 'Resources', detail: 'Allocation opens next', state: 'pending' },
+      { label: 'Event day', detail: '14 February', state: 'pending' },
+      { label: 'Post event', detail: 'Report and archive', state: 'pending' },
+    ],
+  },
+  modules: [
+    { id: 'plan', title: 'Plan Event', eyebrow: 'Create & organise', tone: 'brass', floatDelay: 0.2, preview: { draftEvent: 'Star Night 2026', planningPhase: 'Budget Review', nextAction: 'Approve venue booking', draftSaved: true } },
+    { id: 'active', title: 'Active Event', eyebrow: 'In progress', tone: 'blue', floatDelay: 1.7, preview: { event: 'Star Night 2026', phase: 'Budget review', date: '14 Feb', pendingTasks: 3 } },
+    { id: 'budget', title: 'Budget', eyebrow: 'Finance', tone: 'neutral', floatDelay: 0.8, preview: { allocated: '₹5,000', spent: '₹2,750', remaining: '₹2,250', progress: 55, nextExpense: 'Venue deposit ₹1,500', budgetHealth: 'On track' } },
+    { id: 'resources', title: 'Resources', eyebrow: 'Operations', tone: 'neutral', floatDelay: 2.4, preview: { available: '12', reserved: '8', requests: '2', recentReservations: [{ name: 'PA System', status: 'confirmed' }, { name: 'Projector', status: 'confirmed' }], awaitingApproval: [{ name: 'Lighting kit', status: 'pending' }] } },
+    { id: 'documentation', title: 'Documentation', eyebrow: 'Post-event', tone: 'blue', floatDelay: 1.2, preview: { pendingReports: '2', lastReport: 'Nebula Nights', recentActivity: ['Tech report submitted', 'Photo archive updated'], reviewQueue: '3 reports awaiting review', exportHistory: 'Last export: 2 days ago' } },
+    { id: 'gallery', title: 'Image Gallery', eyebrow: 'Visual archive', tone: 'brass', floatDelay: 2.9, preview: { albums: [{ name: 'Star Night 2026', photos: 128, videos: 6, date: '14 Feb 2026' }, { name: 'Deep Sky Session', photos: 42, videos: 0, date: '8 Mar 2026' }, { name: 'Nebula Nights', photos: 73, videos: 3, date: '22 Jan 2026' }, { name: 'Telescope Workshop', photos: 31, videos: 2, date: '15 Feb 2026' }, { name: 'Galaxy Watch', photos: 58, videos: 4, date: '10 Dec 2025' }] } },
   ],
 };
