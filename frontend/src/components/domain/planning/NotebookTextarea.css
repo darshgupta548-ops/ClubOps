@@ -1,0 +1,96 @@
+.co-notebook-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.co-notebook-textarea__label {
+  color: var(--co-text-muted);
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.co-notebook-textarea__wrapper {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(4, 7, 13, 0.22), rgba(7, 10, 16, 0.18));
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.025);
+  overflow: hidden;
+  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease), box-shadow 0.2s var(--co-ease);
+}
+
+.co-notebook-textarea__field {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 22px 24px;
+  border: none;
+  outline: none;
+  color: var(--co-text);
+  background: transparent;
+  font: 0.96rem/1.8 var(--co-font-body);
+  resize: vertical;
+  transition: color 0.2s var(--co-ease);
+}
+
+.co-notebook-textarea__field::placeholder {
+  color: rgba(230, 232, 235, 0.55);
+}
+
+.co-notebook-textarea__wrapper.is-focused {
+  border-color: rgba(201, 161, 95, 0.58);
+  background: linear-gradient(145deg, rgba(7, 9, 15, 0.36), rgba(10, 13, 19, 0.28));
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(201, 161, 95, 0.08);
+}
+
+.co-notebook-textarea__wrapper.is-error {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.co-notebook-textarea__wrapper.is-error.is-focused {
+  border-color: rgba(239, 68, 68, 0.7);
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+
+.co-notebook-textarea__lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  padding: 20px 24px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(255, 255, 255, 0.03) 31px,
+    rgba(255, 255, 255, 0.03) 32px
+  );
+}
+
+.co-notebook-textarea__line {
+  height: 32px;
+}
+
+.co-notebook-textarea__error {
+  color: rgba(239, 68, 68, 0.8);
+  font-size: 0.72rem;
+  font: 0.68rem var(--co-font-mono);
+  animation: co-error-fade-in 0.3s var(--co-ease);
+}
+
+@keyframes co-error-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

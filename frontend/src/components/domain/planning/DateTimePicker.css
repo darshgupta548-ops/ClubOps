@@ -1,0 +1,95 @@
+.co-date-time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.co-date-time-picker__label {
+  color: var(--co-text-muted);
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.co-date-time-picker__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 12px;
+}
+
+.co-date-time-picker__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.co-date-time-picker__field-label {
+  color: var(--co-text-faint);
+  font-size: 0.7rem;
+  font: 0.66rem var(--co-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.co-date-time-picker__input {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(4, 7, 13, 0.22), rgba(7, 10, 16, 0.18));
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.025);
+  color: var(--co-text);
+  font: 0.86rem var(--co-font-body);
+  outline: none;
+  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease), box-shadow 0.2s var(--co-ease);
+}
+
+.co-date-time-picker__input:focus {
+  border-color: rgba(201, 161, 95, 0.58);
+  background: linear-gradient(145deg, rgba(7, 9, 15, 0.36), rgba(10, 13, 19, 0.28));
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(201, 161, 95, 0.08);
+}
+
+.co-date-time-picker__input.is-error {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.co-date-time-picker__input.is-error:focus {
+  border-color: rgba(239, 68, 68, 0.7);
+  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.co-date-time-picker__input::placeholder {
+  color: var(--co-text-faint);
+}
+
+.co-date-time-picker__hint {
+  margin-top: 6px;
+  color: var(--co-text-faint);
+  font-size: 0.72rem;
+  font: 0.72rem var(--co-font-mono);
+}
+
+.co-date-time-picker__error {
+  color: rgba(239, 68, 68, 0.8);
+  font-size: 0.72rem;
+  font: 0.68rem var(--co-font-mono);
+  animation: co-error-fade-in 0.3s var(--co-ease);
+}
+
+@keyframes co-error-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 620px) {
+  .co-date-time-picker__grid {
+    grid-template-columns: 1fr;
+  }
+}
