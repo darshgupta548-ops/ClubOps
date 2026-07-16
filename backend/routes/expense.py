@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify
 from database import db
 from models.expense import Expense
 from models.budget import Budget
+from models.attachment import Attachment
 
 expense = Blueprint("expense", __name__)
 
@@ -14,7 +15,17 @@ def serialize_expense(e):
         "item_name": e.item_name,
         "category": e.category,
         "quantity": e.quantity,
-        "unit_price": e.unit_price
+        "unit_price": e.unit_price,
+        "attachments": [
+            {
+                "id": a.id,
+                "expense_id": a.expense_id,
+                "file_name": a.file_name,
+                "file_path": a.file_path,
+                "uploaded_at": a.uploaded_at.isoformat() if a.uploaded_at else None
+            }
+            for a in e.attachments
+        ]
     }
 
 

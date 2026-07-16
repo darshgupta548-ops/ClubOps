@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 
 const MODULE_ICONS = {
   plan: '⌁',
@@ -9,109 +9,93 @@ const MODULE_ICONS = {
   gallery: '◫',
 };
 
+const SWIPE_THRESHOLD = 72;
+const STACK_SIZE = 5;
+
 function PhotoStack({ albums }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [drag, setDrag] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const [dragX, setDragX] = useState(0);
-  const [dragY, setDragY] = useState(0);
-  const [rotation, setRotation] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const startX = useRef(0);
-  const startY = useRef(0);
+  const [exitDirection, setExitDirection] = useState(0);
+  const startPoint = useRef(null);
 
-  const handleMouseDown = (e) => {
-    if (isAnimating) return;
-    startX.current = e.clientX;
-    startY.current = e.clientY;
+  const visibleAlbums = Array.from({ length: Math.min(STACK_SIZE, albums.length) }, (_, index) => (
+    albums[(currentIndex + index) % albums.length]
+  ));
+
+  const releaseCard = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    if (Math.abs(drag.x) < SWIPE_THRESHOLD) {
+      setDrag({ x: 0, y: 0 });
+      return;
+    }
+
+    setExitDirection(Math.sign(drag.x));
+    window.setTimeout(() => {
+      setCurrentIndex((index) => (index + 1) % albums.length);
+      setDrag({ x: 0, y: 0 });
+      setExitDirection(0);
+    }, 320);
+  };
+
+  const handlePointerDown = (event) => {
+    if (exitDirection) return;
+    startPoint.current = { x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
     setIsDragging(true);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - startX.current;
-    const deltaY = e.clientY - startY.current;
-    setDragX(deltaX);
-    setDragY(deltaY);
-    setRotation(deltaX * 0.03);
+  const handlePointerMove = (event) => {
+    if (!isDragging || !startPoint.current) return;
+    const x = event.clientX - startPoint.current.x;
+    const y = event.clientY - startPoint.current.y;
+    setDrag({ x, y: y * 0.18 });
   };
 
-  const handleMouseUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    
-    const threshold = 120;
-    if (Math.abs(dragX) > threshold) {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % albums.length);
-        setDragX(0);
-        setDragY(0);
-        setRotation(0);
-        setTimeout(() => setIsAnimating(false), 400);
-      }, 300);
-    } else {
-      setDragX(0);
-      setDragY(0);
-      setRotation(0);
-    }
+  const handlePointerUp = (event) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    startPoint.current = null;
+    releaseCard();
   };
-
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging, dragX, dragY]);
-
-  const visibleAlbums = [];
-  for (let i = 0; i < 5; i++) {
-    visibleAlbums.push(albums[(currentIndex + i) % albums.length]);
-  }
 
   return (
-    <div 
-      className="co-dashboard-card__photo-stack"
-      onMouseDown={handleMouseDown}
+    <div
+      className={`co-dashboard-card__photo-stack ${isDragging ? 'is-dragging' : ''} ${exitDirection ? 'is-cycling' : ''}`}
+      aria-label="Event album stack. Drag or swipe to browse albums."
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
     >
-      {visibleAlbums.map((album, i) => {
-        const isFront = i === 0;
-        const stackIndex = i;
-        const baseRotation = (stackIndex - 2) * 1.5;
-        const baseOffsetX = (stackIndex - 2) * 6;
-        const baseOffsetY = stackIndex * 4;
-        const scale = 1 - stackIndex * 0.06;
-        const opacity = stackIndex === 0 ? 1 : 1 - stackIndex * 0.15;
-        const zIndex = 10 - stackIndex;
-        
-        const finalRotation = isFront ? rotation : baseRotation;
-        const finalOffsetX = isFront ? baseOffsetX + dragX : baseOffsetX;
-        const finalOffsetY = isFront ? baseOffsetY + dragY - Math.abs(dragX) * 0.1 : baseOffsetY;
-        const finalScale = isFront ? scale + Math.abs(dragX) * 0.0008 : scale;
-        const finalOpacity = isFront ? 1 : opacity;
-        const shadowIntensity = isDragging && isFront ? 1.3 : 1;
+      {visibleAlbums.map((album, index) => {
+        const isFront = index === 0;
+        const stackRotation = index === 0 ? 0 : index % 2 === 0 ? -1.4 : 1.25;
 
         return (
           <div
-            key={`${album.name}-${currentIndex}-${i}`}
-            className="co-dashboard-card__photo-card"
+            key={`${album.title}-${currentIndex}-${index}`}
+            className={`co-dashboard-card__photo-card ${isFront ? 'is-front' : ''}`}
             style={{
-              transform: `translate(${finalOffsetX}px, ${finalOffsetY}px) rotate(${finalRotation}deg) scale(${finalScale})`,
-              opacity: finalOpacity,
-              zIndex,
-              transition: isDragging || isAnimating ? 'none' : 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
-              '--shadow-intensity': shadowIntensity,
+              '--stack-x': `${index * 6}px`,
+              '--stack-y': `${index * 6}px`,
+              '--stack-rotation': `${stackRotation}deg`,
+              '--stack-scale': 1 - index * 0.045,
+              '--stack-opacity': 1 - index * 0.12,
+              '--drag-x': isFront ? `${drag.x}px` : '0px',
+              '--drag-y': isFront ? `${drag.y}px` : '0px',
+              '--drag-rotation': isFront ? `${drag.x * 0.025}deg` : '0deg',
+              '--exit-x': isFront && exitDirection ? `${exitDirection * 260}px` : '0px',
+              '--idle-delay': `${index * 1.3}s`,
+              zIndex: STACK_SIZE - index,
             }}
           >
             <div className="co-dashboard-card__photo-card-content">
-              <div className="co-dashboard-card__photo-card-image" />
+              <div className={`co-dashboard-card__photo-card-image co-dashboard-card__photo-card-image--${album.art}`} />
               <div className="co-dashboard-card__photo-card-overlay">
-                <b>{album.name}</b>
-                <small>{album.photos} Photos{album.videos > 0 && ` • ${album.videos} Videos`}</small>
-                <small className="co-dashboard-card__photo-card-date">{album.date}</small>
+                <b>{album.title}</b>
+                <small>{album.date} · {album.photos} photos{album.videos ? ` · ${album.videos} videos` : ''}</small>
               </div>
             </div>
           </div>

@@ -35,3 +35,9 @@ class Expense(db.Model):
         "Budget",
         back_populates="expenses"
     )
+
+    attachments = db.relationship(
+        "Attachment",
+        back_populates="expense",
+        cascade="all, delete-orphan"
+    )

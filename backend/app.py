@@ -7,6 +7,7 @@ from models.member import Member
 from models.event import Event
 from models.budget import Budget
 from models.expense import Expense
+from models.attachment import Attachment
 from models.resource import Resource
 from models.automation import Automation
 

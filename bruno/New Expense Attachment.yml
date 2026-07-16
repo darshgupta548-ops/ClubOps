@@ -1,0 +1,22 @@
+info:
+  name: New Expense Attachment
+  type: http
+  seq: 23
+
+http:
+  method: POST
+  url: http://127.0.0.1:5000/api/expenses/1/attachments
+  body:
+    type: json
+    data: |-
+      {
+        "file_name": "venue_invoice.pdf",
+        "file_path": "uploads/venue_invoice.pdf"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
