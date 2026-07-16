@@ -105,12 +105,13 @@ function PhotoStack({ albums }) {
   );
 }
 
-export default function DashboardCard({ module }) {
+export default function DashboardCard({ module, onOpen }) {
   return (
     <button
       className={`co-dashboard-card co-dashboard-card--${module.tone}`}
       type="button"
       style={{ '--float-delay': `${module.floatDelay}s` }}
+      onClick={onOpen}
     >
       <span className="co-dashboard-card__icon" aria-hidden="true">{MODULE_ICONS[module.id]}</span>
       <span className="co-dashboard-card__content">

@@ -8,7 +8,7 @@ import './DashboardPreview.css';
  * future DashboardContainer can replace mock data with the Flask API without
  * changing the layout components.
  */
-export default function DashboardPreview({ data, user }) {
+export default function DashboardPreview({ data, user, onPlanEvent }) {
   return (
     <main className="co-workspace" aria-label="ClubOps workspace">
       <DashboardHeader user={user} />
@@ -21,7 +21,11 @@ export default function DashboardPreview({ data, user }) {
 
       <section className="co-workspace__launcher" aria-label="Event workspace modules">
         {data.modules.map((module) => (
-          <DashboardCard key={module.id} module={module} />
+          <DashboardCard
+            key={module.id}
+            module={module}
+            onOpen={module.id === 'plan' ? onPlanEvent : undefined}
+          />
         ))}
       </section>
     </main>

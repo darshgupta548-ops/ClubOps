@@ -6,6 +6,7 @@ import LockScreen from '../../components/landing/LockScreen';
 import { useAuth } from '../../context/AuthContext';
 import useDashboardReveal from '../../hooks/useDashboardReveal';
 import StarField from '../../theme/StarField';
+import PlanEvent from '../PlanEvent/PlanEvent';
 import './Landing.css';
 
 /**
@@ -20,6 +21,7 @@ export default function LandingPage() {
   const { isAuthenticated, user, login, register } = useAuth();
   const { entered, enterDashboard } = useDashboardReveal(isAuthenticated);
   const [authDialog, setAuthDialog] = useState({ open: false, mode: 'signin' });
+  const [isPlanningEvent, setIsPlanningEvent] = useState(false);
 
   const openAuthDialog = (mode) => setAuthDialog({ open: true, mode });
   const closeAuthDialog = () => setAuthDialog((current) => ({ ...current, open: false }));
@@ -33,12 +35,20 @@ export default function LandingPage() {
     closeAuthDialog();
   };
 
+  if (isPlanningEvent) {
+    return <PlanEvent onReturnToDashboard={() => setIsPlanningEvent(false)} />;
+  }
+
   return (
     <div className="co-landing co-grain">
       <StarField />
 
       <div className={`co-landing__workspace ${entered ? 'is-entered' : ''}`}>
-        <DashboardPreview data={dashboardPreviewData} user={user} />
+        <DashboardPreview
+          data={dashboardPreviewData}
+          user={user}
+          onPlanEvent={() => setIsPlanningEvent(true)}
+        />
       </div>
       <div className={`co-landing__scrim ${entered ? 'is-entered' : ''}`} />
 
