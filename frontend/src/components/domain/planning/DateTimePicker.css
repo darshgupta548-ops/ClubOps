@@ -1,80 +1,86 @@
 .co-date-time-picker {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .co-date-time-picker__label {
   color: var(--co-text-muted);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
 }
 
 .co-date-time-picker__grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .co-date-time-picker__field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .co-date-time-picker__field-label {
   color: var(--co-text-faint);
-  font-size: 0.7rem;
-  font: 0.66rem var(--co-font-mono);
+  font-size: 0.68rem;
+  font: 0.64rem var(--co-font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
 }
 
 .co-date-time-picker__input {
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  background: linear-gradient(145deg, rgba(4, 7, 13, 0.22), rgba(7, 10, 16, 0.18));
-  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.025);
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(6, 9, 15, 0.32), rgba(9, 12, 18, 0.24));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   color: var(--co-text);
-  font: 0.86rem var(--co-font-body);
+  font: 0.88rem var(--co-font-body);
   outline: none;
-  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease), box-shadow 0.2s var(--co-ease);
+  transition: border-color 0.28s linear, background 0.28s linear, box-shadow 0.28s linear, transform 0.28s linear;
+  caret-color: var(--co-accent);
 }
 
 .co-date-time-picker__input:focus {
-  border-color: rgba(201, 161, 95, 0.58);
-  background: linear-gradient(145deg, rgba(7, 9, 15, 0.36), rgba(10, 13, 19, 0.28));
-  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(201, 161, 95, 0.08);
+  border-color: rgba(201, 161, 95, 0.72);
+  background: linear-gradient(145deg, rgba(8, 11, 17, 0.44), rgba(12, 15, 21, 0.36));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 0 0 3px rgba(201, 161, 95, 0.14), 0 6px 16px rgba(201, 161, 95, 0.1);
+  transform: translateY(-1px);
 }
 
 .co-date-time-picker__input.is-error {
-  border-color: rgba(239, 68, 68, 0.5);
+  border-color: rgba(239, 68, 68, 0.55);
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.08), rgba(9, 12, 18, 0.24));
 }
 
 .co-date-time-picker__input.is-error:focus {
-  border-color: rgba(239, 68, 68, 0.7);
-  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.04), 0 0 0 3px rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.8);
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.14), rgba(10, 13, 19, 0.3));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 0 0 3px rgba(239, 68, 68, 0.16), 0 6px 16px rgba(239, 68, 68, 0.12);
 }
 
 .co-date-time-picker__input::placeholder {
-  color: var(--co-text-faint);
+  color: rgba(230, 232, 235, 0.45);
 }
 
 .co-date-time-picker__hint {
   margin-top: 6px;
   color: var(--co-text-faint);
-  font-size: 0.72rem;
-  font: 0.72rem var(--co-font-mono);
+  font-size: 0.7rem;
+  font: 0.68rem var(--co-font-mono);
 }
 
 .co-date-time-picker__error {
-  color: rgba(239, 68, 68, 0.8);
-  font-size: 0.72rem;
-  font: 0.68rem var(--co-font-mono);
+  color: rgba(239, 68, 68, 0.85);
+  font-size: 0.7rem;
+  font: 0.66rem var(--co-font-mono);
   animation: co-error-fade-in 0.3s var(--co-ease);
+  margin-top: 4px;
 }
 
 @keyframes co-error-fade-in {

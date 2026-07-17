@@ -1,0 +1,40 @@
+.co-premium-input__wrapper--date {
+  position: relative;
+  height: 50px;
+}
+
+.co-premium-input__field--date {
+  /* Hide the browser's default calendar icon */
+  position: relative;
+  z-index: 2;
+}
+
+/* Remove the browser's default date input styling */
+.co-premium-input__field--date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+/* Hide the spinbutton in date input */
+.co-premium-input__field--date::-webkit-outer-spin-button,
+.co-premium-input__field--date::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.co-premium-input__date-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  color: var(--co-accent);
+  pointer-events: none;
+  z-index: 1;
+}
