@@ -41,7 +41,7 @@ export const PremiumInput = forwardRef(({
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={placeholder}
+          placeholder={hasValue || isFocused ? '' : placeholder}
           className="co-premium-input__field"
           {...props}
         />
@@ -96,7 +96,7 @@ export const PremiumTextarea = forwardRef(({
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={placeholder}
+          placeholder={hasValue || isFocused ? '' : placeholder}
           rows={rows}
           className="co-premium-input__field"
           {...props}

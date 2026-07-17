@@ -1,5 +1,7 @@
 import { PremiumInput, PremiumTextarea } from './PremiumInput';
+import { DatePickerInput } from './DatePickerInput';
 import { DateTimePicker } from './DateTimePicker';
+import { TimePicker } from './TimePicker';
 import { PremiumSelectionGrid } from './PremiumSelectionCard';
 import { PremiumBudget } from './PremiumBudget';
 import { NotebookTextarea } from './NotebookTextarea';
@@ -12,55 +14,72 @@ const COMPONENT_ITEMS = COMPONENTS.map((c) => ({ value: c, label: c }));
 
 export function BasicInformationStep({ details, onChange, errors = {} }) {
   return (
-    <div className="co-plan-event__form-grid">
-      <div className="is-wide">
+    <div className="co-plan-event__basic-info">
+      <div className="co-plan-event__event-details">
+        <div className="co-plan-event__event-name">
+          <PremiumInput
+            label="Event name"
+            value={details.name}
+            onChange={(e) => onChange('name', e.target.value)}
+            placeholder="e.g. Star Night 2026"
+            error={errors.name}
+            autoFocus
+          />
+        </div>
+        <div className="co-plan-event__event-description">
+          <PremiumTextarea
+            label="A short description"
+            value={details.description}
+            onChange={(e) => onChange('description', e.target.value)}
+            placeholder="What are you bringing to life?"
+            rows={3}
+          />
+        </div>
+      </div>
+      <div className="co-plan-event__venue-participants">
         <PremiumInput
-          label="Event name"
-          value={details.name}
-          onChange={(e) => onChange('name', e.target.value)}
-          placeholder="e.g. Star Night 2026"
-          error={errors.name}
-          autoFocus
+          label="Venue"
+          value={details.venue}
+          onChange={(e) => onChange('venue', e.target.value)}
+          placeholder="Observatory lawn"
+          error={errors.venue}
+        />
+        <PremiumInput
+          label="Expected participants"
+          type="number"
+          min="1"
+          value={details.participants}
+          onChange={(e) => onChange('participants', e.target.value)}
+          placeholder="60"
+          error={errors.participants}
         />
       </div>
-      <div className="is-wide">
-        <PremiumTextarea
-          label="A short description"
-          value={details.description}
-          onChange={(e) => onChange('description', e.target.value)}
-          placeholder="What are you bringing to life?"
-          rows={3}
-        />
-      </div>
-      <PremiumInput
-        label="Venue"
-        value={details.venue}
-        onChange={(e) => onChange('venue', e.target.value)}
-        placeholder="Observatory lawn"
-        error={errors.venue}
-      />
-      <PremiumInput
-        label="Expected participants"
-        type="number"
-        min="1"
-        value={details.participants}
-        onChange={(e) => onChange('participants', e.target.value)}
-        placeholder="60"
-        error={errors.participants}
-      />
-      <div className="is-wide">
-        <DateTimePicker
-          label="Date & Time"
-          value={{ date: details.date, startTime: details.startTime, endTime: details.endTime }}
-          onChange={(value) => {
-            onChange('date', value.date);
-            onChange('startTime', value.startTime);
-            onChange('endTime', value.endTime);
-          }}
-          dateError={errors.date}
-          startError={errors.startTime}
-          endError={errors.endTime}
-        />
+      <div className="co-plan-event__datetime-section">
+        <div className="co-plan-event__datetime-header">
+          <h3>Date & Time</h3>
+          <p>Timeline for your event</p>
+        </div>
+        <div className="co-plan-event__datetime-grid">
+          <DatePickerInput
+            label="Date"
+            value={details.date}
+            onChange={(e) => onChange('date', e.target.value)}
+            error={errors.date}
+          />
+          <TimePicker
+            label="Start Time"
+            value={details.startTime}
+            onChange={(value) => onChange('startTime', value)}
+            error={errors.startTime}
+          />
+          <TimePicker
+            label="End Time"
+            value={details.endTime}
+            onChange={(value) => onChange('endTime', value)}
+            error={errors.endTime}
+          />
+        </div>
+        <p className="co-plan-event__datetime-hint">Future dates only</p>
       </div>
     </div>
   );

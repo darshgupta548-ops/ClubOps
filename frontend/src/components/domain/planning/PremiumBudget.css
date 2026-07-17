@@ -1,22 +1,22 @@
 .co-premium-budget {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 36px;
 }
 
 .co-premium-budget__summary {
-  padding: 28px;
-  border: 1px solid rgba(201, 161, 95, 0.18);
-  border-radius: 20px;
-  background: linear-gradient(145deg, rgba(201, 161, 95, 0.13), rgba(15, 17, 23, 0.5));
-  box-shadow: var(--co-shadow-out), inset 0 1px rgba(255, 255, 255, 0.05);
+  padding: 36px;
+  border: 1px solid rgba(201, 161, 95, 0.22);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(201, 161, 95, 0.15), rgba(15, 17, 23, 0.55));
+  box-shadow: var(--co-shadow-out), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .co-premium-budget__summary-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .co-premium-budget__summary-label {
@@ -51,13 +51,13 @@
 .co-premium-budget__breakdown {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 }
 
 .co-premium-budget__breakdown-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 
 .co-premium-budget__breakdown-info {
@@ -87,7 +87,7 @@
   height: 100%;
   background: linear-gradient(90deg, var(--co-accent), rgba(201, 161, 95, 0.7));
   border-radius: inherit;
-  transition: width 0.4s var(--co-ease);
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .co-premium-budget__add {
@@ -129,18 +129,18 @@
   padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  background: linear-gradient(145deg, rgba(4, 7, 13, 0.22), rgba(7, 10, 16, 0.18));
-  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.025);
+  background: linear-gradient(145deg, rgba(6, 9, 15, 0.32), rgba(9, 12, 18, 0.24));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   color: var(--co-text);
   font: 0.86rem var(--co-font-body);
   outline: none;
-  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease);
+  transition: border-color 0.28s linear, background 0.28s linear;
 }
 
 .co-premium-budget__add-select:focus,
 .co-premium-budget__add-input:focus {
-  border-color: rgba(201, 161, 95, 0.5);
-  background: linear-gradient(145deg, rgba(7, 9, 15, 0.36), rgba(10, 13, 19, 0.28));
+  border-color: rgba(201, 161, 95, 0.72);
+  background: linear-gradient(145deg, rgba(8, 11, 17, 0.44), rgba(12, 15, 21, 0.36));
 }
 
 .co-premium-budget__add-select option {
@@ -158,14 +158,15 @@
   padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  background: linear-gradient(145deg, rgba(4, 7, 13, 0.22), rgba(7, 10, 16, 0.18));
-  box-shadow: var(--co-shadow-in), inset 0 1px rgba(255, 255, 255, 0.025);
-  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease);
+  background: linear-gradient(145deg, rgba(6, 9, 15, 0.32), rgba(9, 12, 18, 0.24));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.28s linear, background 0.28s linear;
 }
 
 .co-premium-budget__add-amount:focus-within {
-  border-color: rgba(201, 161, 95, 0.5);
-  background: linear-gradient(145deg, rgba(7, 9, 15, 0.36), rgba(10, 13, 19, 0.28));
+  border-color: rgba(201, 161, 95, 0.72);
+  background: linear-gradient(145deg, rgba(8, 11, 17, 0.44), rgba(12, 15, 21, 0.36));
+  box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 0 3px rgba(201, 161, 95, 0.12);
 }
 
 .co-premium-budget__add-currency {
@@ -182,6 +183,11 @@
   box-shadow: none;
 }
 
+.co-premium-budget__add-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--co-shadow-elevated);
+}
+
 .co-premium-budget__add-button {
   width: 100%;
   padding: 14px 20px;
@@ -192,12 +198,7 @@
   box-shadow: var(--co-shadow-out);
   font: 600 0.88rem var(--co-font-body);
   cursor: pointer;
-  transition: transform 0.25s var(--co-ease), box-shadow 0.25s var(--co-ease);
-}
-
-.co-premium-budget__add-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: var(--co-shadow-elevated);
+  transition: transform 0.28s linear, box-shadow 0.28s linear;
 }
 
 .co-premium-budget__add-button:disabled {
@@ -207,8 +208,8 @@
 }
 
 .co-premium-budget__items {
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .co-premium-budget__items-title {
@@ -222,29 +223,32 @@
 .co-premium-budget__items-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .co-premium-budget__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  background: rgba(7, 10, 16, 0.22);
-  transition: all 0.2s var(--co-ease);
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(8, 11, 17, 0.28), rgba(5, 8, 14, 0.2));
+  box-shadow: var(--co-shadow-subtle), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 0.28s linear, background 0.28s linear, transform 0.28s linear, box-shadow 0.28s linear;
 }
 
 .co-premium-budget__item:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(10, 14, 22, 0.28);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(12, 16, 24, 0.34), rgba(8, 11, 17, 0.26));
+  transform: translateY(-1px);
+  box-shadow: var(--co-shadow-out), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .co-premium-budget__item-content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   flex: 1;
 }
 
@@ -268,16 +272,18 @@
 .co-premium-budget__item-amount-input {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  background: rgba(4, 7, 13, 0.2);
-  transition: border-color 0.2s var(--co-ease), background 0.2s var(--co-ease);
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 11px;
+  background: linear-gradient(145deg, rgba(6, 9, 15, 0.28), rgba(4, 7, 13, 0.2));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 0.28s linear, background 0.28s linear, box-shadow 0.28s linear;
 }
 
 .co-premium-budget__item-amount-input:focus-within {
-  border-color: rgba(201, 161, 95, 0.4);
-  background: rgba(7, 9, 15, 0.3);
+  border-color: rgba(201, 161, 95, 0.55);
+  background: linear-gradient(145deg, rgba(8, 11, 17, 0.38), rgba(6, 9, 15, 0.3));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 0 0 3px rgba(201, 161, 95, 0.1);
 }
 
 .co-premium-budget__item-currency {
