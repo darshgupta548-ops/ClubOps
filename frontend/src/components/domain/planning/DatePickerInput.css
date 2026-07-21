@@ -1,23 +1,24 @@
 .co-premium-input__wrapper--date {
   position: relative;
-  height: 50px;
+  height: var(--co-field-height);
 }
 
 .co-premium-input__field--date {
-  /* Hide the browser's default calendar icon */
   position: relative;
   z-index: 2;
+  padding: 0 var(--co-field-inline-padding) 0 48px;
+  color-scheme: dark;
+  cursor: pointer;
 }
 
-/* Remove the browser's default date input styling */
 .co-premium-input__field--date::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  border-radius: 4px;
-  margin-right: 2px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   opacity: 0;
-  pointer-events: none;
-  width: 0;
-  height: 0;
+  cursor: pointer;
 }
 
 /* Hide the spinbutton in date input */
@@ -27,14 +28,31 @@
   margin: 0;
 }
 
-.co-premium-input__date-icon {
+.co-premium-input__date-button {
   position: absolute;
   right: 14px;
   top: 50%;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.co-premium-input__date-button:hover,
+.co-premium-input__date-button:focus-visible {
+  background: rgba(201, 161, 95, 0.12);
+  outline: none;
+}
+
+.co-premium-input__date-icon {
   width: 18px;
   height: 18px;
-  transform: translateY(-50%);
   color: var(--co-accent);
-  pointer-events: none;
-  z-index: 1;
 }

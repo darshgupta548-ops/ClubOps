@@ -1,4 +1,6 @@
-import { useState, forwardRef } from 'react';
+import { useId, useState, forwardRef } from 'react';
+
+const hasFieldValue = (value) => value !== undefined && value !== null && String(value).length > 0;
 
 export const PremiumInput = forwardRef(({ 
   label, 
@@ -13,10 +15,10 @@ export const PremiumInput = forwardRef(({
   ...props 
 }, ref) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [hasValue, setHasValue] = useState(Boolean(value));
+  const inputId = useId();
+  const hasValue = hasFieldValue(value);
 
   const handleChange = (e) => {
-    setHasValue(Boolean(e.target.value));
     onChange?.(e);
   };
 
@@ -32,24 +34,21 @@ export const PremiumInput = forwardRef(({
 
   return (
     <div className="co-premium-input">
-      <div className={`co-premium-input__wrapper ${isFocused ? 'is-focused' : ''} ${error ? 'is-error' : ''}`}>
+      {label && <label htmlFor={inputId} className="co-premium-input__label">{label}</label>}
+      <div className={`co-premium-input__wrapper ${icon ? 'has-icon' : ''} ${isFocused ? 'is-focused' : ''} ${error ? 'is-error' : ''}`}>
         {icon && <span className="co-premium-input__icon">{icon}</span>}
         <input
           ref={ref}
+          id={inputId}
           type={type}
           value={value}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={hasValue || isFocused ? '' : placeholder}
+          placeholder={placeholder}
           className="co-premium-input__field"
           {...props}
         />
-        {label && (
-          <label className={`co-premium-input__label ${hasValue || isFocused ? 'is-floating' : ''}`}>
-            {label}
-          </label>
-        )}
       </div>
       {error && <span className="co-premium-input__error">{error}</span>}
     </div>
@@ -70,10 +69,10 @@ export const PremiumTextarea = forwardRef(({
   ...props 
 }, ref) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [hasValue, setHasValue] = useState(Boolean(value));
+  const inputId = useId();
+  const hasValue = hasFieldValue(value);
 
   const handleChange = (e) => {
-    setHasValue(Boolean(e.target.value));
     onChange?.(e);
   };
 
@@ -89,23 +88,20 @@ export const PremiumTextarea = forwardRef(({
 
   return (
     <div className="co-premium-input">
+      {label && <label htmlFor={inputId} className="co-premium-input__label">{label}</label>}
       <div className={`co-premium-input__wrapper co-premium-input__wrapper--textarea ${isFocused ? 'is-focused' : ''} ${error ? 'is-error' : ''}`}>
         <textarea
           ref={ref}
+          id={inputId}
           value={value}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder={hasValue || isFocused ? '' : placeholder}
+          placeholder={placeholder}
           rows={rows}
           className="co-premium-input__field"
           {...props}
         />
-        {label && (
-          <label className={`co-premium-input__label ${hasValue || isFocused ? 'is-floating' : ''}`}>
-            {label}
-          </label>
-        )}
       </div>
       {error && <span className="co-premium-input__error">{error}</span>}
     </div>

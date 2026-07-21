@@ -59,8 +59,8 @@ export function TimePicker({ value, onChange, error, label }) {
   const displayValue = value || 'Select time';
 
   return (
-    <div className="co-time-picker">
-      {label && <label className="co-time-picker__label">{label}</label>}
+    <div className="co-time-picker co-premium-input">
+      {label && <label className="co-premium-input__label">{label}</label>}
       <div className="co-time-picker__wrapper">
         <button
           type="button"
@@ -115,13 +115,22 @@ export function TimePicker({ value, onChange, error, label }) {
               </div>
               <div className="co-time-picker__section">
                 <span className="co-time-picker__section-label">Period</span>
-                <button
-                  type="button"
-                  className="co-time-picker__period-toggle"
-                  onClick={togglePeriod}
-                >
-                  {period}
-                </button>
+                <div className="co-time-picker__period-options" role="group" aria-label="Select AM or PM">
+                  {['AM', 'PM'].map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      className={`co-time-picker__period-option ${period === p ? 'is-selected' : ''}`}
+                      onClick={() => {
+                        setPeriod(p);
+                        handleTimeChange(hours, minutes, p);
+                      }}
+                      aria-pressed={period === p}
+                    >
+                      {p}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

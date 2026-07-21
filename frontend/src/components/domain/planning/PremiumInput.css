@@ -1,4 +1,7 @@
 .co-premium-input {
+  --co-field-height: 56px;
+  --co-field-radius: 15px;
+  --co-field-inline-padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -8,9 +11,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 50px;
+  height: var(--co-field-height);
   border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 15px;
+  border-radius: var(--co-field-radius);
   background: linear-gradient(145deg, rgba(6, 9, 15, 0.32), rgba(9, 12, 18, 0.24));
   box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   transition: border-color 0.28s linear, background 0.28s linear, box-shadow 0.28s linear, transform 0.28s linear;
@@ -49,9 +52,11 @@
   transition: color 0.28s linear, transform 0.28s linear;
 }
 
-.co-premium-input__field {
+.co-premium-input .co-premium-input__field {
+  height: 100%;
+  min-height: 0;
   width: 100%;
-  padding: 18px 16px 10px;
+  padding: 0 var(--co-field-inline-padding);
   border: none;
   outline: none;
   color: var(--co-text);
@@ -60,13 +65,20 @@
   transition: color 0.28s linear;
 }
 
-.co-premium-input__wrapper--textarea .co-premium-input__field {
-  padding: 20px 16px 10px;
+.co-premium-input .co-premium-input__wrapper--textarea .co-premium-input__field {
+  height: auto;
+  padding: 12px var(--co-field-inline-padding);
   resize: vertical;
   min-height: 110px;
 }
 
-.co-premium-input__field::placeholder {
+.co-premium-input .co-premium-input__field:focus {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.co-premium-input .co-premium-input__field::placeholder {
   color: rgba(230, 232, 235, 0.45);
 }
 
@@ -75,29 +87,11 @@
 }
 
 .co-premium-input__label {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%) scale(1);
-  color: var(--co-text-faint);
-  font-size: 0.9rem;
-  font-weight: 400;
-  pointer-events: none;
-  transition: all 0.28s linear;
-  transform-origin: left center;
-}
-
-.co-premium-input__wrapper.has-icon .co-premium-input__label {
-  left: 40px;
-}
-
-.co-premium-input__label.is-floating {
-  top: 8px;
-  transform: translateY(0) scale(0.65);
-  font-size: 0.9rem;
-  color: var(--co-accent);
+  color: var(--co-text-muted);
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  display: block;
 }
 
 .co-premium-input__error {

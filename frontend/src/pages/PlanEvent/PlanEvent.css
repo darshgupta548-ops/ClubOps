@@ -86,7 +86,8 @@
 .co-plan-event__datetime-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 20px;
+  align-items: start;
 }
 
 .co-plan-event__datetime-hint {
@@ -279,7 +280,7 @@
   .co-plan-event__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .co-plan-event__steps li { padding: 12px 10px; }
   .co-plan-event__heading { margin: 40px 0 26px; }
-  .co-plan-event__form-grid, .co-plan-event__notes, .co-plan-event__review, .co-plan-event__review-grid { grid-template-columns: 1fr; }
+  .co-plan-event__form-grid, .co-plan-event__notes, .co-plan-event__review, .co-plan-event__review-grid, .co-plan-event__venue-participants, .co-plan-event__datetime-grid { grid-template-columns: 1fr; }
   .co-plan-event__budget-layout { grid-template-columns: 1fr; }
   .co-plan-event__estimate { position: static; }
   .co-plan-event__body { min-height: 0; }

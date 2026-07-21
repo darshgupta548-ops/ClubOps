@@ -10,10 +10,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
-  padding: 0 16px;
+  height: var(--co-field-height);
+  padding: var(--co-field-content-top) var(--co-field-inline-padding) 6px;
   border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 14px;
+  border-radius: var(--co-field-radius);
   background: linear-gradient(145deg, rgba(6, 9, 15, 0.32), rgba(9, 12, 18, 0.24));
   box-shadow: var(--co-shadow-in), inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   cursor: pointer;
