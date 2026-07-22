@@ -7,6 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import useDashboardReveal from '../../hooks/useDashboardReveal';
 import StarField from '../../theme/StarField';
 import PlanEvent from '../PlanEvent/PlanEvent';
+import ActiveEvent from '../ActiveEvent/ActiveEvent';
 import './Landing.css';
 
 /**
@@ -22,6 +23,7 @@ export default function LandingPage() {
   const { entered, enterDashboard } = useDashboardReveal(isAuthenticated);
   const [authDialog, setAuthDialog] = useState({ open: false, mode: 'signin' });
   const [isPlanningEvent, setIsPlanningEvent] = useState(false);
+  const [activeEventId, setActiveEventId] = useState(null);
 
   const openAuthDialog = (mode) => setAuthDialog({ open: true, mode });
   const closeAuthDialog = () => setAuthDialog((current) => ({ ...current, open: false }));
@@ -39,6 +41,12 @@ export default function LandingPage() {
     return <PlanEvent onReturnToDashboard={() => setIsPlanningEvent(false)} />;
   }
 
+  const activeEvent = dashboardPreviewData.activeEvents.find((event) => event.id === activeEventId);
+
+  if (activeEvent) {
+    return <ActiveEvent event={activeEvent} onReturnToDashboard={() => setActiveEventId(null)} />;
+  }
+
   return (
     <div className="co-landing co-grain">
       <StarField />
@@ -48,6 +56,7 @@ export default function LandingPage() {
           data={dashboardPreviewData}
           user={user}
           onPlanEvent={() => setIsPlanningEvent(true)}
+          onOpenEvent={setActiveEventId}
         />
       </div>
       <div className={`co-landing__scrim ${entered ? 'is-entered' : ''}`} />
